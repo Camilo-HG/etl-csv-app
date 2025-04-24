@@ -1,0 +1,238 @@
+# --- Docker
+.devcontainer/**
+*devcontainer.env
+*devcontainer.json
+*Dockerfile
+# ---
+
+# --- Editor Related
+.vscode
+.idea
+.dbx
+.idea/
+*.iml
+out/
+.idea_modules/
+.spyderproject
+.spyproject
+
+# Vim
+*~
+.*.swo
+.*.swp
+
+# emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+# ---
+
+# --- Local configs
+!conf/local/.gitkeep
+!data/**/
+!logs/**/
+!.gitkeep
+conf/local/**
+.telemetry
+data/**
+logs/**
+# ---
+
+# --- Credentials
+conf/**/*credentials*
+# ---
+
+# --- Common files
+*.DS_Store
+.AppleDouble
+.LSOverride
+.Trashes
+# ---
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# C extensions
+*.so
+
+# --- Templates and binaries
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.so
+
+# logs
+**/*.log
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyBuilder
+target/
+
+# IPython
+profile_default/
+ipython_config.py
+.ipython/profile_default/history.sqlite
+.ipython/profile_default/startup/README
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+# ---
+
+# --- PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+# ---
+
+# --- Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+# ---
+
+# --- Translations
+*.mo
+*.pot
+# ---
+
+# --- Databricks
+databricks-files-sync/
+# ---
+
+# --- Django
+*.log
+.static_storage/
+.media/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+# ---
+
+# --- Flask
+instance/
+.webassets-cache
+# ---
+
+# --- Scrapy
+.scrapy
+# ---
+
+# --- Sphinx documentation
+docs/_build/
+# ---
+
+# --- PEP 582
+__pypackages__/
+# ---
+
+# --- Celery
+celerybeat-schedule
+celerybeat.pid
+# ---
+
+# --- SageMath parsed files
+*.sage.py
+# ---
+
+# --- Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+# ---
+
+# --- Rope project settings
+.ropeproject
+# ---
+
+# --- mkdocs documentation
+/site
+# ---
+
+# --- mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+# ---
+
+# --- spark files
+metastore_db/
+# ---
+
+# --- Pyre type checker
+.pyre/
+# ---
+
+# --- Terraform
+**/.terraform/*
+*/.terraform.lock.hcl
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+.terraformrc
+terraform.rc
+# ---
+
+# --- Crash log files
+crash.log
+crash.*.log
+# ---
+
+# --- Overrides
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override files you do wish to add to version control using negated pattern
+# !example_override.tf
+# ---
+
+# --- MLflow
+mlruns
+abfss*
+# ---
