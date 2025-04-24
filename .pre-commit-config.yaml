@@ -1,0 +1,28 @@
+repos:
+-   repo: https://github.com/psf/black
+    rev: 25.1.0
+    hooks:
+    -   id: black
+        args: [--line-length=110] # flake8 convention
+        exclude: ^notebooks/.
+-   repo: https://github.com/PyCQA/flake8
+    rev: 7.2.0
+    hooks:
+    -   id: flake8
+        args: [--config=.flake8]
+        exclude: ^notebooks/.
+-   repo: https://github.com/asottile/reorder_python_imports
+    rev: v3.14.0
+    hooks:
+    -   id: reorder-python-imports
+        exclude: ^notebooks/.
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+        exclude: ^notebooks/.
+    - id: no-commit-to-branch # Prevent committing to specific branches.
+      args: ['--branch', 'main', '--branch', 'dev']
+    -   id: check-merge-conflict # Prevent committing files that contain merge conflict strings.
+        args: [--assume-in-merge] # Allows running the hook when there is no ongoing merge operation
