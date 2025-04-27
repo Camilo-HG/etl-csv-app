@@ -1,3 +1,5 @@
+uv.lock
+
 # --- Docker
 .devcontainer/**
 *devcontainer.env
@@ -98,7 +100,7 @@ ipython_config.py
 .ipython/profile_default/startup/README
 .ipynb_checkpoints
 
-# pyenv
+# uv
 .python-version
 # ---
 

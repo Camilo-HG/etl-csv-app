@@ -3,7 +3,7 @@ A simple app to perform ETL from CSV files
 
 # Project setup
 
-The current project uses different python packages that are listed in `requirements.txt` file.
+You can find project's specification and dependencies at `pyproject.toml` file.
 Please create a python virtual environment and install all these dependencies.
 
 ## Coding standards

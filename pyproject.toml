@@ -1,0 +1,12 @@
+[project]
+name = "etl-csv-app"
+version = "0.1.0"
+description = "A simple app to perform ETL from CSV files"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+]
