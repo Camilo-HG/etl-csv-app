@@ -5,6 +5,7 @@ from sqlmodel import create_engine
 from sqlmodel import Session
 
 # Database engine
+# TODO: Provide this info using an .env file
 sqlite_file_name = "db/database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
 
@@ -12,7 +13,8 @@ sqlite_url = f"sqlite:///{sqlite_file_name}"
 # SQLite database in different threads.
 # This is necessary as one single request could use more than one thread
 connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url, connect_args=connect_args)
+# TODO: Remove echo=True when in PRD
+engine = create_engine(sqlite_url, connect_args=connect_args, echo=True)
 
 
 # A Session is what stores the objects in memory and keeps track of any
