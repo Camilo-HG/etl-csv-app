@@ -8,10 +8,10 @@ from sqlmodel import select
 from sqlmodel import SQLModel
 
 from db.connection import engine
-from db.connection import SessionDep  # noqa: F401
-from db.models import Department  # noqa: F401
-from db.models import HiredEmployee  # noqa: F401
-from db.models import Job  # noqa: F401
+from db.connection import SessionDep
+from db.models import Department
+from db.models import HiredEmployee
+from db.models import Job
 
 
 def create_db_and_tables():
@@ -143,9 +143,27 @@ async def migrate_hired_employees(
     columns = ["name", "datetime", "department_id", "job_id"]
     df = pd.read_csv(StringIO(data_str), header=None, names=columns)
 
+    # Convert the "datetime" column to datetime
+    df["datetime"] = pd.to_datetime(df["datetime"])
+
+    # You must cast floats to integers
+    # Check: https://stackoverflow.com/questions/70778065/how-to-preserve-dtype-int-when-reading-integers-with-nan-in-pandas  # noqa: E501
+    df = df.astype({"department_id": "Int64", "job_id": "Int64"})
+    df[["datetime", "department_id", "job_id"]] = df[["datetime", "department_id", "job_id"]].fillna(value=-1)
+
+    # You must change pandas NaN to None
+    # Check: https://stackoverflow.com/questions/14162723/replacing-pandas-or-numpy-nan-with-a-none-to-use-with-mysqldb  # noqa: E501
+    # df = df.where(pd.notnull(df), None)
+
     for row in df.itertuples():
         hired_employee = HiredEmployee(
-            name=row.name, datetime=row.datetime, department_id=row.department_id, job_id=row.job_id
+            name=row.name,
+            # datetime=row.datetime,
+            # department_id=row.department_id,
+            # job_id=row.job_id
+            datetime=None if row.datetime == -1 else row.datetime,
+            department_id=None if row.department_id == -1 else row.department_id,
+            job_id=None if row.job_id == -1 else row.job_id,
         )
         session.add(hired_employee)
 

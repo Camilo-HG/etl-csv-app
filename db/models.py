@@ -1,5 +1,8 @@
+from pydantic import ConfigDict
+from sqlmodel import Column
 from sqlmodel import Field
 from sqlmodel import SQLModel
+from sqlmodel import TIMESTAMP
 
 
 class HiredEmployee(SQLModel, table=True):
@@ -12,6 +15,10 @@ class HiredEmployee(SQLModel, table=True):
         job_id INTEGER Id of the job which the employee was hired for
     """
 
+    # To allow TIMESTAMP as a valid type
+    # Check: https://docs.pydantic.dev/latest/api/config/#pydantic.config.ConfigDict.arbitrary_types_allowed
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
     # Although id is a primary_key and it is supposed not to be null,
     # in SQLModel we define it as
     #
@@ -22,9 +29,11 @@ class HiredEmployee(SQLModel, table=True):
     # not by our code (remember that the id will is required in the database).
     id: int | None = Field(default=None, primary_key=True)
     name: str | None = None
-    datetime: str | None = None
-    department_id: int | None = Field(default=None, index=True)  # This one is an index, but could None
-    job_id: int | None = Field(default=None, index=True)  # This one is an index, but could None
+    datetime: TIMESTAMP | None = Field(
+        default=None, sa_column=Column(TIMESTAMP(timezone=True), nullable=True)
+    )
+    department_id: int | None = Field(default=None, foreign_key="department.id")
+    job_id: int | None = Field(default=None, foreign_key="job.id")
 
 
 class Department(SQLModel, table=True):
@@ -35,7 +44,7 @@ class Department(SQLModel, table=True):
         department (str): Name of the department
     """
 
-    department_id: int | None = Field(default=None, primary_key=True)
+    id: int | None = Field(default=None, primary_key=True)
     department: str
 
 
@@ -47,5 +56,5 @@ class Job(SQLModel, table=True):
         job (str): Name of the job
     """
 
-    job_id: int | None = Field(default=None, primary_key=True)
+    id: int | None = Field(default=None, primary_key=True)
     job: str
