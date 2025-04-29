@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi import UploadFile
 from sqlmodel import SQLModel
 
 from db.connection import engine
@@ -56,3 +57,27 @@ app = FastAPI(lifespan=lifespan)
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
+
+
+@app.post("/migrate/departments")
+async def migrate_departments(departments_file: UploadFile):
+    """
+    Endpoint to migrate departments from a departments.csv file.
+    """
+    return {"filename": departments_file.filename}
+
+
+@app.post("/migrate/jobs")
+async def migrate_jobs(jobs_file: UploadFile):
+    """
+    Endpoint to migrate jobs from a jobs.csv file.
+    """
+    return {"filename": jobs_file.filename}
+
+
+@app.post("/migrate/hired_employees")
+async def migrate_hired_employees(hired_employees_file: UploadFile):
+    """
+    Endpoint to migrate HiredEmployees from a hired_employees.csv file.
+    """
+    return {"filename": hired_employees_file.filename}
