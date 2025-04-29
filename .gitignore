@@ -1,4 +1,5 @@
 uv.lock
+db/database.db
 
 # --- Docker
 .devcontainer/**
